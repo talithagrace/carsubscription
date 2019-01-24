@@ -1,0 +1,16 @@
+<div id="body">
+  <form method="POST" class="booking-form" style="color:#818181">{% csrf_token %}
+    <h1>Add a car</h1>
+  {{ form.as_p }}
+      <button type="submit" class="save btn btn-default">Submit</button>
+  </form>
+
+  {% for car in cars %}
+  <h2>{{ car.make }}</h2>
+  <h2>{{ car.model }}</h2>
+  <h2>{{ car.registration }}</h2>
+  <h2>{{ car.VIN }}</h2>
+
+  {% endfor %}
+
+</div>
