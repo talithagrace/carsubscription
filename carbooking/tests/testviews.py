@@ -3,6 +3,7 @@ from carbooking.views import index
 from django.test.client import Client
 from django.template.loader import render_to_string
 from carbooking.forms import BookingForm
+from django.contrib.auth import login, authenticate
 
 class ViewsTest(TestCase):
     c = Client()

@@ -1,4 +1,12 @@
 <h1>CAR BOOKING WEBSITE</h1>
 
+{% if user.is_superuser %}
 <h2><a href="{% url 'add_car' %}">Add Car</a></h2>
+{% endif %}
+
+{% if user.is_authenticated %}
 <h2><a href="{% url 'add_booking' %}">Add Booking</a></h2>
+{% endif %}
+
+<h2><a href="{% url 'signup'%}">Sign up</a> or <a href="{% url 'login' %}">login</a> to book a car</h2>
+<p><a href="{% url 'logout' %}">logout</a></p>

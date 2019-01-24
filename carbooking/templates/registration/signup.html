@@ -1,0 +1,17 @@
+
+<body>
+<div class="signup">
+{% if form.errors %}
+  <p>Username already exists. Please try again.</p>
+{% endif %}
+<p>Create account here to book a car.</p>
+<p>If you have already signed up <a href="{% url 'login' %}">log in here</a>
+</p>
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">sign up</button>
+</form>
+</div>
+</body>

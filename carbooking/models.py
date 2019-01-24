@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+import datetime
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 class Car(models.Model):
@@ -25,6 +27,12 @@ class Booking(models.Model):
 
     class Meta:
         unique_together = ("driver", "car", "start_time", "end_time", "start_date", "end_date")
+
+
+    def clean(self):
+        if self.start_date < datetime.date.today():
+            raise ValidationError("The date cannot be in the past!")
+        return self.start_date
 
     def __str__(self):
         return '%s %s %s' % (self.driver, self.start_time, self.end_time)

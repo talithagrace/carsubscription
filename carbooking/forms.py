@@ -1,6 +1,8 @@
 from django import forms
 from .models import Car, Booking
 from django.forms import widgets
+from datetime import datetime
+from datetime import timedelta
 
 class DateInput(forms.DateTimeInput):
     input_type = 'date'
