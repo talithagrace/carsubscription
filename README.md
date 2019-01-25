@@ -12,6 +12,10 @@
 
 <p>4. To set up database: python manage.py migrate</p>
 
-<p>5. python manage.py makemigrations</>
+<p>5. python manage.py makemigrations</p>
+  
+<p>6. To create a superuser: python manage.py createsuperuser</p>
 
-<p>6. To launch app: python manage.py runserver</>
+<p>7. To launch app: python manage.py runserver</p>
+  
+<p>8. Administrators/superusers can perform CRUD operations by going localhost:8000/admin</p>
