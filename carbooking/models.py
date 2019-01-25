@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 import datetime
 from django.core.exceptions import ValidationError
+from datetime import datetime as dt
+
 
 # Create your models here.
 class Car(models.Model):
@@ -33,6 +35,15 @@ class Booking(models.Model):
         if self.start_date < datetime.date.today():
             raise ValidationError("The date cannot be in the past!")
         return self.start_date
+
+    def clean_overlaps(self):
+        bookings = Booking.objects.all()
+        for booking in bookings:
+            if ((dt.strptime((self.start_date), '%Y-%m-%d').date()) >= booking.start_date
+                and ((dt.strptime((self.start_date), '%Y-%m-%d').date()) <= booking.end_date
+                    and (self.car == booking.car))):
+                        raise ValidationError("Car not available in this time slot")
+        return '%s %s' % (self.start_date, self.car)
 
     def __str__(self):
         return '%s %s %s' % (self.driver, self.start_time, self.end_time)
