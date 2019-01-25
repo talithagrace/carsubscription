@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Car, Booking
 from .forms import AddCarForm, BookingForm
 from django.contrib.auth.decorators import login_required
@@ -9,7 +9,8 @@ from django.views import generic
 
 # Create your views here.
 def index(request):
-    return render(request, 'carbooking/index.html', {})
+    bookings = Booking.objects.all().order_by('start_date')
+    return render(request, 'carbooking/index.html', {'bookings': bookings})
 
 @login_required
 def add_car(request):
@@ -48,7 +49,6 @@ def add_booking(request):
     else:
         form = BookingForm()
     return render(request, 'carbooking/add_booking.html', {'form': form})
-
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm

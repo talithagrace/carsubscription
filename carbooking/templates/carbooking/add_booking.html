@@ -1,3 +1,5 @@
+{% extends 'carbooking/cbbase.html' %}
+{% block content %}
 <div id="body">
   <form method="POST" class="booking-form" style="color:#818181">{% csrf_token %}
     <h1>Make a booking</h1>
@@ -7,3 +9,4 @@
 
 
 </div>
+{% endblock %}

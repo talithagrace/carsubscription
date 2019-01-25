@@ -1,5 +1,5 @@
-<h1>CAR BOOKING WEBSITE</h1>
-
+{% extends 'carbooking/cbbase.html' %}
+{% block content %}
 {% if user.is_superuser %}
 <h2><a href="{% url 'add_car' %}">Add Car</a></h2>
 {% endif %}
@@ -10,3 +10,4 @@
 
 <h2><a href="{% url 'signup'%}">Sign up</a> or <a href="{% url 'login' %}">login</a> to book a car</h2>
 <p><a href="{% url 'logout' %}">logout</a></p>
+{% endblock%}

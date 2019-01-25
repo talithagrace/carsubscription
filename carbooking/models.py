@@ -29,7 +29,7 @@ class Booking(models.Model):
         unique_together = ("driver", "car", "start_time", "end_time", "start_date", "end_date")
 
 
-    def clean(self):
+    def clean_startdate(self):
         if self.start_date < datetime.date.today():
             raise ValidationError("The date cannot be in the past!")
         return self.start_date
