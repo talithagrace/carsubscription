@@ -32,7 +32,7 @@ class Booking(models.Model):
 
 
     def clean_startdate(self):
-        if self.start_date < datetime.date.today():
+        if self.start_date < date.today():
             raise ValidationError("The date cannot be in the past!")
         return self.start_date
 
@@ -44,6 +44,9 @@ class Booking(models.Model):
                     and (self.car == booking.car))):
                         raise ValidationError("Car not available in this time slot")
         return '%s %s' % (self.start_date, self.car)
+
+    def add(self):
+        self.save()
 
     def __str__(self):
         return '%s %s %s' % (self.driver, self.start_time, self.end_time)
